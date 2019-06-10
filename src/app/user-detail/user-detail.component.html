@@ -3,10 +3,31 @@
     *ngFor="let user of detail"
     style="flex:1;
   display: flex;
-  justify-content: center;"
+  align-items: center;flex-direction: column"
   >
+    <button
+      mat-button
+      *ngIf="!edit"
+      style="margin-top: 20px;margin-bottom: 20px"
+      (click)="onClick()"
+    >
+      Edit
+    </button>
+    <div
+      *ngIf="edit"
+      style="display: flex;margin-top: 20px;margin-bottom: 20px"
+    >
+      <button mat-button (click)="onCancelEdit()">
+        Cancel
+      </button>
+      <button mat-button (click)="onSave()" style="margin-left: 16px">
+        Save
+      </button>
+    </div>
+
     <mat-card
-      style="width:80%;margin-top: 25px; display:flex;flex-direction: column"
+      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
+      *ngIf="!edit"
       ><img
         mat-card-image
         src="{{ user.avatar_url }}"
@@ -25,6 +46,38 @@
       ><mat-card-subtitle style="margin-top:16px"
         >URL: {{ user.url }}</mat-card-subtitle
       >
+    </mat-card>
+
+    <mat-card
+      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
+      *ngIf="edit"
+      ><img
+        mat-card-image
+        src="{{ user.avatar_url }}"
+        style="height:150px; width:150px; border-radius: 75px; border: 1px solid lightgrey; align-self: center; margin-top: 20px"
+      />
+      <form class="example-form">
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input matInput placeholder="Name" value="{{ user.name }}" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input matInput placeholder="Location" value="{{ user.location }}" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input matInput placeholder="User Type" value="{{ user.type }}" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input
+            matInput
+            placeholder="Edited at"
+            value="{{ user.updated_at }}"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input matInput placeholder="URL" value="{{ user.url }}" />
+        </mat-form-field>
+      </form>
     </mat-card>
   </div>
 </div>
