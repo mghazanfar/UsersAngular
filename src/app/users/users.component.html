@@ -23,4 +23,10 @@
       >
     </a>
   </div>
+  <button mat-button (click)="fetchMore()" *ngIf="!noMore">
+    Fetch More
+  </button>
+  <h3 *ngIf="noMore">
+    No more data to show!!
+  </h3>
 </div>
