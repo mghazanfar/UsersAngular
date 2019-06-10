@@ -1,5 +1,26 @@
-<div *ngFor="let user of users">
-  <h3>
-    <a routerLink="/user-detail/{{ user.id }}">Name: {{ user.login }}</a>
-  </h3>
+<div
+  style="display: flex; justify-content: center;flex-wrap: wrap;padding:25px"
+>
+  <div
+    *ngFor="let user of users"
+    style="width:150px; margin-top:20px; margin-right:10px"
+  >
+    <a routerLink="/user-detail/{{ user.id }}"
+      ><mat-card
+        ><img
+          mat-card-image
+          src="{{ user.avatar_url }}"
+          style="height:150px"
+        /><b
+          style="overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block!important;
+          max-width: 110px;"
+          >{{ user.login }}</b
+        >
+        <mat-card-subtitle>{{ user.login }}</mat-card-subtitle></mat-card
+      >
+    </a>
+  </div>
 </div>
