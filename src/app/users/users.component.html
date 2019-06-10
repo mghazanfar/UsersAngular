@@ -23,10 +23,17 @@
       >
     </a>
   </div>
-  <button mat-button (click)="fetchMore()" *ngIf="!noMore">
+</div>
+<div
+  style="display: flex;
+justify-content: center;
+padding: 36px;"
+>
+  <button mat-button (click)="fetchMore()" *ngIf="!noMore && !loading">
     Fetch More
   </button>
   <h3 *ngIf="noMore">
     No more data to show!!
   </h3>
+  <mat-spinner *ngIf="loading"></mat-spinner>
 </div>
