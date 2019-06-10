@@ -17,7 +17,6 @@ export class UserDetailComponent implements OnInit {
     axios
       .get(`https://api.github.com/users/${id}`)
       .then(res => {
-        debugger;
         this.detail = [res.data];
       })
       .catch(err => {});

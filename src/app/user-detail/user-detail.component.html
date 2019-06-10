@@ -1,5 +1,30 @@
-<div *ngFor="let item of detail">
-  <h3>
-    <h4>Name: {{ item.events_url }}</h4>
-  </h3>
+<div style="display:flex;flex:1;justify-content: center">
+  <div
+    *ngFor="let user of detail"
+    style="flex:1;
+  display: flex;
+  justify-content: center;"
+  >
+    <mat-card
+      style="width:80%;margin-top: 25px; display:flex;flex-direction: column"
+      ><img
+        mat-card-image
+        src="{{ user.avatar_url }}"
+        style="height:150px; width:150px; border-radius: 75px; border: 1px solid lightgrey; align-self: center; margin-top: 20px"
+      />
+      <mat-card-subtitle style="margin-top:16px"
+        >Name: {{ user.name }}</mat-card-subtitle
+      ><mat-card-subtitle style="margin-top:16px"
+        >Location: {{ user.location }}</mat-card-subtitle
+      ><mat-card-subtitle style="margin-top:16px"
+        >User Type: {{ user.type }}</mat-card-subtitle
+      ><mat-card-subtitle style="margin-top:16px"
+        >Email: {{ user.email }}</mat-card-subtitle
+      ><mat-card-subtitle style="margin-top:16px"
+        >Edited at: {{ user.updated_at }}</mat-card-subtitle
+      ><mat-card-subtitle style="margin-top:16px"
+        >URL: {{ user.url }}</mat-card-subtitle
+      >
+    </mat-card>
+  </div>
 </div>
