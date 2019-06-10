@@ -8,7 +8,7 @@ import axios from "axios";
   styleUrls: ["./user-detail.component.scss"]
 })
 export class UserDetailComponent implements OnInit {
-  public detail: { login: string; id: string } = { login: "", id: "" };
+  public detail: { login: string; id: string }[] = [{ login: "", id: "" }];
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -17,7 +17,8 @@ export class UserDetailComponent implements OnInit {
     axios
       .get(`https://api.github.com/users/${id}`)
       .then(res => {
-        this.detail = res.data;
+        debugger;
+        this.detail = [res.data];
       })
       .catch(err => {});
   }
