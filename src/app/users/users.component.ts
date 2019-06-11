@@ -36,6 +36,7 @@ export class UsersComponent implements OnInit {
     this.loading = true;
     this.cancel = false;
     this.noMore = false;
+    this.search = "";
     this.users = [];
     axios
       .get(`https://api.github.com/users?page=${this.page}`)
