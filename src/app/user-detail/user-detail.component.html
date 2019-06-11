@@ -58,25 +58,46 @@
       />
       <form class="example-form">
         <mat-form-field class="example-full-width" style="width: 100%">
-          <input matInput placeholder="Name" value="{{ user.name }}" />
-        </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 100%">
-          <input matInput placeholder="Location" value="{{ user.location }}" />
-        </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 100%">
-          <input matInput placeholder="User Type" value="{{ user.type }}" />
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 100%">
           <input
             matInput
-            placeholder="Edited at"
-            value="{{ user.updated_at }}"
+            placeholder="Name"
+            name="name"
+            value="{{ user.name }}"
+            (input)="handleChange($event)"
           />
         </mat-form-field>
         <mat-form-field class="example-full-width" style="width: 100%">
-          <input matInput placeholder="URL" value="{{ user.url }}" />
+          <input
+            matInput
+            name="location"
+            placeholder="Location"
+            value="{{ user.location }}"
+            (input)="handleChange($event)"
+          />
         </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input
+            matInput
+            name="userType"
+            placeholder="User Type"
+            value="{{ user.type }}"
+            (input)="handleChange($event)"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%">
+          <input
+            matInput
+            name="email"
+            placeholder="Email"
+            value="{{ user.email }}"
+            (input)="handleChange($event)"
+          />
+        </mat-form-field>
+        <mat-card-subtitle style="margin-top:16px"
+          >Edited at: {{ user.updated_at }}</mat-card-subtitle
+        ><mat-card-subtitle style="margin-top:16px"
+          >URL: {{ user.url }}</mat-card-subtitle
+        >
       </form>
     </mat-card>
   </div>
