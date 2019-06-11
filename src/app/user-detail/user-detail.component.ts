@@ -41,12 +41,20 @@ export class UserDetailComponent implements OnInit {
     name: string;
     location: string;
     userType: string;
-  } = {
-    email: "",
-    name: "",
-    location: "",
-    userType: ""
-  };
+    avatar_url: string;
+    updated_at: string;
+    url: string;
+  }[] = [
+    {
+      email: "",
+      name: "",
+      location: "",
+      userType: "",
+      avatar_url: "",
+      updated_at: "",
+      url: ""
+    }
+  ];
   public emailError: Boolean = false;
   constructor(private route: ActivatedRoute) {}
 
@@ -56,6 +64,17 @@ export class UserDetailComponent implements OnInit {
       .get(`https://api.github.com/users/${id}`)
       .then(res => {
         this.detail = [res.data];
+        this.editedDetail = [
+          {
+            name: res.data.name,
+            email: res.data.email,
+            location: res.data.location,
+            userType: res.data.type,
+            avatar_url: res.data.avatar_url,
+            updated_at: res.data.updated_at,
+            url: res.data.url
+          }
+        ];
       })
       .catch(err => {});
   }
@@ -74,7 +93,6 @@ export class UserDetailComponent implements OnInit {
       `userDetail${id}`,
       JSON.stringify(this.editedDetail)
     );
-    debugger;
     if (!this.emailError) {
       alert(
         `User edited successfully with the following details: ${JSON.stringify(
@@ -92,19 +110,19 @@ export class UserDetailComponent implements OnInit {
     let value: string = e.currentTarget.value;
     let name: string = e.srcElement.name;
     if (name === "name") {
-      this.editedDetail.name = value;
+      this.editedDetail[0].name = value;
     }
     if (name === "location") {
-      this.editedDetail.location = value;
+      this.editedDetail[0].location = value;
     }
     if (name === "userType") {
-      this.editedDetail.userType = value;
+      this.editedDetail[0].userType = value;
     }
     if (name === "email" && !regex.test(value)) {
       this.emailError = true;
     } else if (name === "email" && regex.test(value)) {
       this.emailError = false;
-      this.editedDetail.email = value;
+      this.editedDetail[0].email = value;
     }
   }
 }
