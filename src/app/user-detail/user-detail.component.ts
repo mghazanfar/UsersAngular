@@ -41,6 +41,11 @@ export class UserDetailComponent implements OnInit {
     name: string;
     location: string;
     userType: string;
+  } = {
+    email: "",
+    name: "",
+    location: "",
+    userType: ""
   };
   public emailError: Boolean = false;
   constructor(private route: ActivatedRoute) {}
@@ -65,20 +70,25 @@ export class UserDetailComponent implements OnInit {
 
   onSave() {
     const id = this.route.snapshot.paramMap.get("id");
-    let name = `userDetail${id}`;
     window.localStorage.setItem(
       `userDetail${id}`,
       JSON.stringify(this.editedDetail)
     );
-    alert(
-      `User edited successfully with the following details: ${JSON.stringify(
-        this.editedDetail
-      )}`
-    );
+    debugger;
+    if (!this.emailError) {
+      alert(
+        `User edited successfully with the following details: ${JSON.stringify(
+          this.editedDetail
+        )}`
+      );
+      this.edit = false;
+    } else {
+      alert("Email is invalid");
+    }
   }
 
   handleChange(e) {
-    let regex = /^(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).*/;
+    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let value: string = e.currentTarget.value;
     let name: string = e.srcElement.name;
     if (name === "name") {

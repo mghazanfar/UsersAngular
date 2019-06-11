@@ -91,8 +91,12 @@
             placeholder="Email"
             value="{{ user.email }}"
             (input)="handleChange($event)"
-          />
-        </mat-form-field>
+          /> </mat-form-field
+        ><mat-card-subtitle
+          style="margin-top:-14px; color:red"
+          *ngIf="emailError"
+          >Email is invalid</mat-card-subtitle
+        >
         <mat-card-subtitle style="margin-top:16px"
           >Edited at: {{ user.updated_at }}</mat-card-subtitle
         ><mat-card-subtitle style="margin-top:16px"
