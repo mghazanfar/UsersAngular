@@ -1,4 +1,35 @@
 <div
+  style="display:flex; background-color: lightslategray;padding:10px; justify-content: center"
+>
+  <mat-form-field class="example-full-width" style="margin-right: 10px">
+    <input
+      matInput
+      placeholder="Search here"
+      value="{{ search }}"
+      (input)="handleSearchQuery($event)"
+    />
+  </mat-form-field>
+  <mat-form-field style="margin-right: 10px">
+    <mat-label>Order by</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option value="desc">Descending</mat-option>
+      <mat-option value="asc">Ascending</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="searchUsers()"
+    style="margin-left: 10px"
+  >
+    Search
+  </button>
+  <button mat-button color="primary" (click)="cancelSearch()" *ngIf="cancel">
+    Clear search
+  </button>
+</div>
+<div
   style="display: flex; justify-content: center;flex-wrap: wrap;padding:25px"
 >
   <div
@@ -29,7 +60,11 @@
 justify-content: center;
 padding: 36px;"
 >
-  <button mat-button (click)="fetchMore()" *ngIf="!noMore && !loading">
+  <button
+    mat-button
+    (click)="fetchMore()"
+    *ngIf="!noMore && !loading && !cancel"
+  >
     Fetch More
   </button>
   <h3 *ngIf="noMore">
