@@ -1,4 +1,4 @@
-<div style="display:flex;flex:1;justify-content: center">
+<div style="display:flex;flex:1;justify-content: center" *ngIf="!addUser">
   <div
     *ngFor="let user of editedDetail"
     style="flex:1;
@@ -24,7 +24,6 @@
         Save
       </button>
     </div>
-
     <mat-card
       style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
       *ngIf="!edit"
@@ -105,4 +104,63 @@
       </form>
     </mat-card>
   </div>
+</div>
+<div
+  *ngIf="addUser"
+  style="margin-top:16px;display: flex;justify-content: center"
+>
+  <mat-card
+    style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
+    ><img
+      mat-card-image
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHY5iQaJncQUzx9cH18qaNtwUR7QGDDBYnILwHg6aMB3OT6pEs"
+      style="height:150px; width:150px; border-radius: 75px; align-self: center; margin-top: 20px"
+    />
+    <mat-form-field class="example-full-width" style="width: 100%">
+      <input
+        matInput
+        placeholder="Name"
+        name="name"
+        value="{{ editedDetail.name }}"
+        (input)="handleChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="width: 100%">
+      <input
+        matInput
+        name="location"
+        placeholder="Location"
+        value="{{ editedDetail.location }}"
+        (input)="handleChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="width: 100%">
+      <input
+        matInput
+        name="userType"
+        placeholder="User Type"
+        value="{{ editedDetail.userType }}"
+        (input)="handleChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="width: 100%">
+      <input
+        matInput
+        name="email"
+        placeholder="Email"
+        value="{{ editedDetail.email }}"
+        (input)="handleChange($event)"
+      /> </mat-form-field
+    ><mat-card-subtitle style="margin-top:-14px; color:red" *ngIf="emailError"
+      >Email is invalid</mat-card-subtitle
+    >
+    <button
+      mat-raised-button
+      color="warn"
+      style="background: #673ab7;color: white"
+      (click)="onSave()"
+    >
+      Add User
+    </button>
+  </mat-card>
 </div>

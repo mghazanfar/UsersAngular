@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 import {
   FormControl,
   FormGroupDirective,
   NgForm,
   Validators
 } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ErrorStateMatcher } from "@angular/material/core";
 import axios from "axios";
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -36,6 +38,7 @@ export class UserDetailComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   public detail: { login: string; id: string }[] = [{ login: "", id: "" }];
   public edit: Boolean = false;
+  public addUser: Boolean = false;
   public editedDetail: {
     email: string;
     name: string;
@@ -56,27 +59,35 @@ export class UserDetailComponent implements OnInit {
     }
   ];
   public emailError: Boolean = false;
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    private _location: Location
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
-    axios
-      .get(`https://api.github.com/users/${id}`)
-      .then(res => {
-        this.detail = [res.data];
-        this.editedDetail = [
-          {
-            name: res.data.name,
-            email: res.data.email,
-            location: res.data.location,
-            userType: res.data.type,
-            avatar_url: res.data.avatar_url,
-            updated_at: res.data.updated_at,
-            url: res.data.url
-          }
-        ];
-      })
-      .catch(err => {});
+    if (this.route.snapshot.routeConfig.path === "add-user") {
+      this.addUser = true;
+    } else {
+      axios
+        .get(`https://api.github.com/users/${id}`)
+        .then(res => {
+          this.detail = [res.data];
+          this.editedDetail = [
+            {
+              name: res.data.name,
+              email: res.data.email,
+              location: res.data.location,
+              userType: res.data.type,
+              avatar_url: res.data.avatar_url,
+              updated_at: res.data.updated_at,
+              url: res.data.url
+            }
+          ];
+        })
+        .catch(err => {});
+    }
   }
 
   onClick() {
@@ -94,18 +105,27 @@ export class UserDetailComponent implements OnInit {
       JSON.stringify(this.editedDetail)
     );
     if (!this.emailError) {
-      alert(
-        `User edited successfully with the following details: ${JSON.stringify(
-          this.editedDetail
-        )}`
-      );
+      this.addUser
+        ? this.openSnackBar("User Added successfully")
+        : this.openSnackBar("User Edited successfully");
+
       this.edit = false;
     } else {
       alert("Email is invalid");
     }
   }
-
+  openSnackBar(message: string) {
+    this._snackBar
+      .open(message, "Ok", {
+        duration: 2000
+      })
+      .afterDismissed()
+      .subscribe(() => {
+        this._location.back();
+      });
+  }
   handleChange(e) {
+    debugger;
     let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let value: string = e.currentTarget.value;
     let name: string = e.srcElement.name;
