@@ -1,0 +1,51 @@
+.justify-center-container {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.h-40 {
+  height: 40px;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.container-wrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.container-card {
+  width: 150px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.card-img {
+  height: 150px;
+}
+
+.card-title-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block !important;
+  max-width: 110px;
+}
+.justify-center-container-p-36 {
+  display: flex;
+  padding: 36px;
+  justify-content: center;
+}

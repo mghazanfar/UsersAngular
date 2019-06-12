@@ -1,0 +1,53 @@
+.center-flex-1 {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.center-column-flex-1 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.btn-edit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+  margin-right: 9%;
+  align-self: flex-end;
+}
+.card-edit {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.card-avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 75px !important;
+  border: 1px solid lightgrey;
+  align-self: center;
+  margin-top: 20px !important;
+}
+
+.mr-16 {
+  margin-right: 16px !important;
+}
+
+.mt-16 {
+  margin-top: 16px !important;
+}
+.w-100 {
+  width: 100%;
+}
+.error-text {
+  margin-top: -14px;
+  color: red;
+}
+.buttons-edit {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

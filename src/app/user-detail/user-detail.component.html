@@ -1,54 +1,32 @@
-<div style="display:flex;flex:1;justify-content: center" *ngIf="!addUser">
-  <div
-    *ngFor="let user of editedDetail"
-    style="flex:1;
-  display: flex;
-  align-items: center;flex-direction: column"
-  >
+<div class="center-flex-1" *ngIf="!addUser">
+  <div *ngFor="let user of editedDetail" class="center-column-flex-1">
     <button
       mat-raised-button
       color="primary"
       *ngIf="!edit"
-      style="margin-top: 20px;margin-bottom: 20px;
-      margin-bottom: 20px;
-      margin-right: 9%;align-self: flex-end"
+      class="btn-edit"
       (click)="onClick()"
     >
       Edit
     </button>
-    <mat-card
-      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
-      *ngIf="!edit"
-      ><img
-        mat-card-image
-        src="{{ user.avatar_url }}"
-        style="height:150px; width:150px; border-radius: 75px; border: 1px solid lightgrey; align-self: center; margin-top: 20px"
-      />
-      <mat-card-subtitle style="margin-top:16px"
-        >Name: {{ user.name }}</mat-card-subtitle
-      ><mat-card-subtitle style="margin-top:16px"
+    <mat-card class="card-edit" *ngIf="!edit"
+      ><img mat-card-image src="{{ user.avatar_url }}" class="card-avatar" />
+      <mat-card-subtitle class="mt-16">Name: {{ user.name }}</mat-card-subtitle
+      ><mat-card-subtitle class="mt-16"
         >Location: {{ user.location }}</mat-card-subtitle
-      ><mat-card-subtitle style="margin-top:16px"
+      ><mat-card-subtitle class="mt-16"
         >User Type: {{ user.userType }}</mat-card-subtitle
-      ><mat-card-subtitle style="margin-top:16px"
+      ><mat-card-subtitle class="mt-16"
         >Email: {{ user.email }}</mat-card-subtitle
-      ><mat-card-subtitle style="margin-top:16px"
+      ><mat-card-subtitle class="mt-16"
         >Edited at: {{ user.updated_at }}</mat-card-subtitle
-      ><mat-card-subtitle style="margin-top:16px"
-        >URL: {{ user.url }}</mat-card-subtitle
-      >
+      ><mat-card-subtitle class="mt-16">URL: {{ user.url }}</mat-card-subtitle>
     </mat-card>
 
-    <mat-card
-      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px; margin-top: 20px"
-      *ngIf="edit"
-      ><img
-        mat-card-image
-        src="{{ user.avatar_url }}"
-        style="height:150px; width:150px; border-radius: 75px; border: 1px solid lightgrey; align-self: center; margin-top: 20px"
-      />
+    <mat-card class="card-edit" *ngIf="edit"
+      ><img mat-card-image src="{{ user.avatar_url }}" class="card-avatar" />
       <form class="example-form">
-        <mat-form-field class="example-full-width" style="width: 100%">
+        <mat-form-field class="example-full-width" class="w-100">
           <input
             matInput
             placeholder="Name*"
@@ -57,7 +35,7 @@
             (input)="handleChange($event)"
           />
         </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 100%">
+        <mat-form-field class="example-full-width" class="w-100">
           <input
             matInput
             name="location"
@@ -66,7 +44,7 @@
             (input)="handleChange($event)"
           />
         </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 100%">
+        <mat-form-field class="example-full-width" class="w-100">
           <input
             matInput
             name="userType"
@@ -75,7 +53,7 @@
             (input)="handleChange($event)"
           />
         </mat-form-field>
-        <mat-form-field class="example-full-width" style="width: 100%">
+        <mat-form-field class="example-full-width" class="w-100">
           <input
             matInput
             name="email"
@@ -83,26 +61,21 @@
             value="{{ user.email }}"
             (input)="handleChange($event)"
           /> </mat-form-field
-        ><mat-card-subtitle
-          style="margin-top:-14px; color:red"
-          *ngIf="emailError"
+        ><mat-card-subtitle class="error-text" *ngIf="emailError"
           >Email is invalid</mat-card-subtitle
         >
-        <mat-card-subtitle style="margin-top:16px"
+        <mat-card-subtitle class="mt-16"
           >Edited at: {{ user.updated_at }}</mat-card-subtitle
-        ><mat-card-subtitle style="margin-top:16px"
+        ><mat-card-subtitle class="mt-16"
           >URL: {{ user.url }}</mat-card-subtitle
         >
       </form>
-      <div
-        *ngIf="edit"
-        style="display: flex;margin-top: 20px;margin-bottom: 20px"
-      >
+      <div *ngIf="edit" class="buttons-edit">
         <button
           mat-raised-button
           color="warn"
           (click)="onCancelEdit()"
-          style="width:100%;margin-right: 16px"
+          class="mr-16 w-100"
         >
           Cancel
         </button>
@@ -111,7 +84,7 @@
           (click)="onSave()"
           mat-raised-button
           color="primary"
-          style="width:100%;"
+          class="w-100"
         >
           Save
         </button>
@@ -119,18 +92,14 @@
     </mat-card>
   </div>
 </div>
-<div
-  *ngIf="addUser"
-  style="margin-top:16px;display: flex;justify-content: center"
->
-  <mat-card
-    style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
+<div *ngIf="addUser" class="mt-16 center-flex-1">
+  <mat-card class="card-edit"
     ><img
       mat-card-image
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHY5iQaJncQUzx9cH18qaNtwUR7QGDDBYnILwHg6aMB3OT6pEs"
-      style="height:150px; width:150px; border-radius: 75px; align-self: center; margin-top: 20px"
+      class="card-avatar"
     />
-    <mat-form-field class="example-full-width" style="width: 100%">
+    <mat-form-field class="example-full-width" class="w-100">
       <input
         matInput
         placeholder="Name*"
@@ -139,7 +108,7 @@
         (input)="handleChange($event)"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width" style="width: 100%">
+    <mat-form-field class="example-full-width" class="w-100">
       <input
         matInput
         name="location"
@@ -148,7 +117,7 @@
         (input)="handleChange($event)"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width" style="width: 100%">
+    <mat-form-field class="example-full-width" class="w-100">
       <input
         matInput
         name="userType"
@@ -157,7 +126,7 @@
         (input)="handleChange($event)"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width" style="width: 100%">
+    <mat-form-field class="example-full-width" class="w-100">
       <input
         matInput
         name="email"
@@ -165,7 +134,7 @@
         value="{{ editedDetail.email }}"
         (input)="handleChange($event)"
       /> </mat-form-field
-    ><mat-card-subtitle style="margin-top:-14px; color:red" *ngIf="emailError"
+    ><mat-card-subtitle class="error-text" *ngIf="emailError"
       >Email is invalid</mat-card-subtitle
     >
     <button mat-raised-button color="primary" (click)="onSave()">

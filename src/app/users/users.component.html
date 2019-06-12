@@ -1,5 +1,5 @@
-<div style="display:flex; padding:10px; justify-content: center">
-  <mat-form-field class="example-full-width" style="margin-right: 10px">
+<div class="justify-center-container">
+  <mat-form-field class="example-full-width mr-10">
     <input
       matInput
       placeholder="Search here"
@@ -7,7 +7,7 @@
       (input)="handleSearchQuery($event)"
     />
   </mat-form-field>
-  <mat-form-field style="margin-right: 10px">
+  <mat-form-field class="mr-10">
     <mat-label>Order by</mat-label>
     <mat-select [(value)]="selected">
       <mat-option value="asc">Ascending</mat-option>
@@ -19,7 +19,7 @@
     mat-raised-button
     color="primary"
     (click)="searchUsers()"
-    style="margin-left: 10px; height:40px"
+    class="ml-10 h-40"
   >
     Search
   </button>
@@ -28,30 +28,17 @@
     color="primary"
     (click)="cancelSearch()"
     *ngIf="cancel"
-    style="height:40px; margin-left: 10px"
+    class="ml-10 h-40"
   >
     Clear search
   </button>
 </div>
-<div
-  style="display: flex; justify-content: center;flex-wrap: wrap;padding:25px"
->
-  <div
-    *ngFor="let user of users"
-    style="width:150px; margin-top:20px; margin-right:10px"
-  >
+<div class="container-wrap">
+  <div *ngFor="let user of users" class="container-card">
     <a routerLink="/user-detail/{{ user.id }}"
       ><mat-card
-        ><img
-          mat-card-image
-          src="{{ user.avatar_url }}"
-          style="height:150px"
-        /><b
-          style="overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          display: inline-block!important;
-          max-width: 110px;"
+        ><img mat-card-image src="{{ user.avatar_url }}" class="card-img" /><b
+          class="card-title-truncate"
           >{{ user.login }}</b
         >
         <mat-card-subtitle>{{ user.login }}</mat-card-subtitle></mat-card
@@ -59,11 +46,7 @@
     </a>
   </div>
 </div>
-<div
-  style="display: flex;
-justify-content: center;
-padding: 36px;"
->
+<div class="justify-center-container-p-36">
   <button
     mat-button
     (click)="fetchMore()"
