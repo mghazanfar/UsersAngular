@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   public search = "";
   public cancel = false;
   public loadingSearch = false;
+  public sort = "followers";
   selected = "asc";
   constructor() {}
 
@@ -76,25 +77,29 @@ export class UsersComponent implements OnInit {
   }
 
   searchUsers() {
-    this.users = [];
-    this.loading = true;
-    this.cancel = true;
-    axios
-      .get(
-        `https://api.github.com/search/users?q=${this.search}&order=${
-          this.selected
-        }`
-      )
-      .then(res => {
-        this.users = this.users.concat(res.data.items);
-        debugger;
-        this.loading = false;
-        if (res.data.items.length < 31) {
-          this.noMore = true;
-        }
-      })
-      .catch(err => {
-        this.loading = false;
-      });
+    if (this.search.length === 0) {
+      alert("Search cannot be empty");
+    } else {
+      this.users = [];
+      this.loading = true;
+      this.cancel = true;
+      let params = {
+        q: this.search,
+        order: this.selected,
+        sort: this.sort
+      };
+      axios
+        .get(`https://api.github.com/search/users`, { params })
+        .then(res => {
+          this.users = this.users.concat(res.data.items);
+          this.loading = false;
+          if (res.data.items.length < 31) {
+            this.noMore = true;
+          }
+        })
+        .catch(err => {
+          this.loading = false;
+        });
+    }
   }
 }

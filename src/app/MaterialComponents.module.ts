@@ -10,6 +10,8 @@ import {
   MatIconModule
 } from "@angular/material";
 
+// Added all neccessary modules that are needed to support Material look n feel
+
 @NgModule({
   imports: [
     MatCardModule,

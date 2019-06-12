@@ -66,6 +66,8 @@ export class UserDetailComponent implements OnInit {
     private _location: Router
   ) {}
 
+  // Implemented  ngOnInit to fetch user details
+
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
     if (this.route.snapshot.routeConfig.path === "add-user") {
@@ -75,7 +77,6 @@ export class UserDetailComponent implements OnInit {
         .get(`https://api.github.com/users/${id}`)
         .then(res => {
           this.detail = [res.data];
-          debugger;
           this.editedDetail = [
             {
               name: res.data.name,
@@ -92,13 +93,20 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
+  // Toggles to edit mode
+
   onClick() {
     this.edit = true;
   }
 
+  // Toggles to detail display
+
   onCancelEdit() {
     this.edit = false;
   }
+
+  // Implemented saving details in the local host and using the updated values to show the details in display valie mode
+  // Alerts were used by Angular maaterial for which onSave() contains the implementation
 
   onSave() {
     const id = this.route.snapshot.paramMap.get("id");
@@ -123,6 +131,9 @@ export class UserDetailComponent implements OnInit {
       alert("Name/Location/User Type cannot be empty");
     }
   }
+
+  // A generic method to open different alerts/snackbars
+
   openSnackBar(message: string) {
     this._snackBar
       .open(message, "Ok", {
@@ -133,6 +144,9 @@ export class UserDetailComponent implements OnInit {
         this._location.navigate(["users"]);
       });
   }
+
+  // A generic method to handle different values' changes
+
   handleChange(e) {
     let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let value: string = e.currentTarget.value;

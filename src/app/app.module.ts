@@ -9,6 +9,8 @@ import { UsersComponent } from "./users/users.component";
 import { UserDetailComponent } from "./user-detail/user-detail.component";
 import { MaterialComponents } from "./MaterialComponents.module";
 
+// Defined vital modules for app structure
+
 @NgModule({
   declarations: [AppComponent, UsersComponent, UserDetailComponent],
   imports: [
