@@ -6,24 +6,16 @@
   align-items: center;flex-direction: column"
   >
     <button
-      mat-button
+      mat-raised-button
+      color="primary"
       *ngIf="!edit"
-      style="margin-top: 20px;margin-bottom: 20px"
+      style="margin-top: 20px;margin-bottom: 20px;
+      margin-bottom: 20px;
+      margin-right: 9%;align-self: flex-end"
       (click)="onClick()"
     >
       Edit
     </button>
-    <div
-      *ngIf="edit"
-      style="display: flex;margin-top: 20px;margin-bottom: 20px"
-    >
-      <button mat-button (click)="onCancelEdit()">
-        Cancel
-      </button>
-      <button mat-button (click)="onSave()" style="margin-left: 16px">
-        Save
-      </button>
-    </div>
     <mat-card
       style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
       *ngIf="!edit"
@@ -48,7 +40,7 @@
     </mat-card>
 
     <mat-card
-      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px"
+      style="width:80%; display:flex;flex-direction: column;margin-bottom: 20px; margin-top: 20px"
       *ngIf="edit"
       ><img
         mat-card-image
@@ -102,6 +94,28 @@
           >URL: {{ user.url }}</mat-card-subtitle
         >
       </form>
+      <div
+        *ngIf="edit"
+        style="display: flex;margin-top: 20px;margin-bottom: 20px"
+      >
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="onCancelEdit()"
+          style="width:100%;margin-right: 16px"
+        >
+          Cancel
+        </button>
+        <button
+          mat-button
+          (click)="onSave()"
+          mat-raised-button
+          color="primary"
+          style="width:100%;"
+        >
+          Save
+        </button>
+      </div>
     </mat-card>
   </div>
 </div>
@@ -154,12 +168,7 @@
     ><mat-card-subtitle style="margin-top:-14px; color:red" *ngIf="emailError"
       >Email is invalid</mat-card-subtitle
     >
-    <button
-      mat-raised-button
-      color="warn"
-      style="background: #673ab7;color: white"
-      (click)="onSave()"
-    >
+    <button mat-raised-button color="primary" (click)="onSave()">
       Add User
     </button>
   </mat-card>

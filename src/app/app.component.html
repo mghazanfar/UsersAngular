@@ -1,18 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div
-  style="display: flex;align-items: center;justify-content: space-between;background: white;padding-left: 25px;padding-right: 25px"
->
-  <h1>{{ title }}</h1>
-  <img
-    width="50"
-    height="50"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <div style="display: flex">
-    <a routerLink="/users" style="margin-right: 10px">Users</a>
-    <a routerLink="/add-user">Add User</a>
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>{{ title }}</span>
+    <span style="flex: 1"></span>
+    <a
+      routerLink="/users"
+      style="margin-right: 25px;color: white; text-decoration: none;display: flex;align-items: center"
+      ><img
+        src="https://img.pngio.com/white-people-png-svg-royalty-free-white-person-png-1000_758.png"
+        style="margin-right: 5px;height: 18px;width:20px"
+      />Users</a
+    >
+    <a routerLink="/add-user" style="color: white; text-decoration: none"
+      >+ Add User</a
+    >
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
