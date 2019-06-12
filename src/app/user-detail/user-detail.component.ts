@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
+import { Router } from "@angular/router";
+
 import {
   FormControl,
   FormGroupDirective,
@@ -62,7 +63,7 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private _location: Location
+    private _location: Router
   ) {}
 
   ngOnInit() {
@@ -74,6 +75,7 @@ export class UserDetailComponent implements OnInit {
         .get(`https://api.github.com/users/${id}`)
         .then(res => {
           this.detail = [res.data];
+          debugger;
           this.editedDetail = [
             {
               name: res.data.name,
@@ -104,14 +106,21 @@ export class UserDetailComponent implements OnInit {
       `userDetail${id}`,
       JSON.stringify(this.editedDetail)
     );
-    if (!this.emailError) {
+    if (
+      !this.emailError &&
+      this.editedDetail[0].name.length > 0 &&
+      this.editedDetail[0].location.length > 0 &&
+      this.editedDetail[0].userType.length > 0
+    ) {
       this.addUser
         ? this.openSnackBar("User Added successfully")
         : this.openSnackBar("User Edited successfully");
 
       this.edit = false;
-    } else {
+    } else if (this.emailError) {
       alert("Email is invalid");
+    } else if (this) {
+      alert("Name/Location/User Type cannot be empty");
     }
   }
   openSnackBar(message: string) {
@@ -121,11 +130,10 @@ export class UserDetailComponent implements OnInit {
       })
       .afterDismissed()
       .subscribe(() => {
-        this._location.back();
+        this._location.navigate(["users"]);
       });
   }
   handleChange(e) {
-    debugger;
     let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let value: string = e.currentTarget.value;
     let name: string = e.srcElement.name;

@@ -29,7 +29,7 @@
       ><mat-card-subtitle style="margin-top:16px"
         >Location: {{ user.location }}</mat-card-subtitle
       ><mat-card-subtitle style="margin-top:16px"
-        >User Type: {{ user.type }}</mat-card-subtitle
+        >User Type: {{ user.userType }}</mat-card-subtitle
       ><mat-card-subtitle style="margin-top:16px"
         >Email: {{ user.email }}</mat-card-subtitle
       ><mat-card-subtitle style="margin-top:16px"
@@ -51,7 +51,7 @@
         <mat-form-field class="example-full-width" style="width: 100%">
           <input
             matInput
-            placeholder="Name"
+            placeholder="Name*"
             name="name"
             value="{{ user.name }}"
             (input)="handleChange($event)"
@@ -61,7 +61,7 @@
           <input
             matInput
             name="location"
-            placeholder="Location"
+            placeholder="Location*"
             value="{{ user.location }}"
             (input)="handleChange($event)"
           />
@@ -70,8 +70,8 @@
           <input
             matInput
             name="userType"
-            placeholder="User Type"
-            value="{{ user.type }}"
+            placeholder="User Type*"
+            value="{{ user.userType }}"
             (input)="handleChange($event)"
           />
         </mat-form-field>
@@ -133,7 +133,7 @@
     <mat-form-field class="example-full-width" style="width: 100%">
       <input
         matInput
-        placeholder="Name"
+        placeholder="Name*"
         name="name"
         value="{{ editedDetail.name }}"
         (input)="handleChange($event)"
@@ -143,7 +143,7 @@
       <input
         matInput
         name="location"
-        placeholder="Location"
+        placeholder="Location*"
         value="{{ editedDetail.location }}"
         (input)="handleChange($event)"
       />
@@ -152,7 +152,7 @@
       <input
         matInput
         name="userType"
-        placeholder="User Type"
+        placeholder="User Type*"
         value="{{ editedDetail.userType }}"
         (input)="handleChange($event)"
       />
